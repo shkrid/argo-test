@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-migrate-job
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      containers:
+        - name: my-migrate-container
+          image: alpine:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - exit 1
+      restartPolicy: Never
